@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celebrity Similarity — 10.000 Famous</title>
+    <title>Celebrity Similarity — 100.000 Famous</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -237,7 +237,7 @@
     <div class="container">
         <header>
             <h1>Celebrity Similarity</h1>
-            <p class="subtitle">Discover which of 10,000 famous people you resemble most</p>
+            <p class="subtitle">Discover which of 100,000 famous people you resemble most</p>
         </header>
 
         <div class="search-form">
@@ -269,7 +269,7 @@
         </div>
 
         <div class="actions">
-            <button class="secondary-btn" id="regenerate-btn">Regenerate Dataset (10,000)</button>
+            <button class="secondary-btn" id="regenerate-btn">Regenerate Dataset (100,000)</button>
         </div>
     </div>
 
@@ -337,7 +337,7 @@
             const dataset = [];
             
             // Generate male celebrities (60%)
-            for (let i = 0; i < 6000; i++) {
+            for (let i = 0; i < 60000; i++) {
                 const firstName = seedNames.male[Math.floor(Math.random() * seedNames.male.length)];
                 const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
                 
@@ -351,7 +351,7 @@
             }
             
             // Generate female celebrities (40%)
-            for (let i = 0; i < 4000; i++) {
+            for (let i = 0; i < 40000; i++) {
                 const firstName = seedNames.female[Math.floor(Math.random() * seedNames.female.length)];
                 const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
                 
@@ -518,7 +518,7 @@
             // Regenerate dataset button click handler
             document.getElementById('regenerate-btn').addEventListener('click', () => {
                 celebrityDataset = generateCelebrityDataset();
-                alert('New dataset of 10,000 celebrities generated!');
+                alert('New dataset of 100,000 celebrities generated!');
             });
             
             // Allow search on Enter key
