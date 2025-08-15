@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebrity Similarity — 10.000 Famous</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #ffd700;
+            --light: #ffffff;
+            --dark: #0a0a0a;
+            --gray: #f5f5f5;
+            --text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--gray);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        label {
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        input, select {
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #283593;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .secondary-btn {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+
+        .secondary-btn:hover {
+            background-color: #ffc400;
+        }
+
+        .results-container {
+            display: none;
+            margin-top: 30px;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .celebrity-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .celebrity-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .celebrity-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .celebrity-details {
+            padding: 15px;
+        }
+
+        .celebrity-name {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .celebrity-profession {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .celebrity-country {
+            color: var(--text);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .similarity-score {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--primary);
+            font-weight: 500;
+            padding: 20px;
+            display: none;
+        }
+
+        .error-message {
+            color: #d32f2f;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Celebrity Similarity</h1>
+            <p class="subtitle">Discover which of 10,000 famous people you resemble most</p>
+        </header>
+
+        <div class="search-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name (e.g. Putra)" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender">
+                    <option value="all">All</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            
+            <button id="search-btn">Find Similarity</button>
+            <p class="error-message" id="error-message">Please enter a name to search</p>
+        </div>
+
+        <div class="results-container" id="results-container">
+            <h2 class="results-title">Top 3 Most Similar Celebrities</h2>
+            <div class="results-grid" id="results-grid"></div>
+        </div>
+
+        <div class="no-results" id="no-results">
+            No matching celebrities found. Try a different name or gender.
+        </div>
+
+        <div class="actions">
+            <button class="secondary-btn" id="regenerate-btn">Regenerate Dataset (10,000)</button>
+        </div>
+    </div>
+
+    <script>
+        // Fallback avatar SVG (data URL)
+        const fallbackAvatar = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='35' r='20' fill='%231a237e'/%3E%3Ccircle cx='50' cy='85' r='30' fill='%231a237e'/%3E%3C/svg%3E";
+
+        // Profession categories
+        const professions = {
+            male: [
+                "Actor", "Singer", "Football Player", "Basketball Player", "Politician", 
+                "Entrepreneur", "Scientist", "Chef", "Writer", "Comedian",
+                "Racing Driver", "Tennis Player", "Golfer", "Musician", "DJ",
+                "Model", "YouTuber", "Director", "Producer", "Journalist"
+            ],
+            female: [
+                "Actress", "Singer", "Model", "Dancer", "Politician",
+                "Entrepreneur", "Scientist", "Chef", "Writer", "Comedian",
+                "Tennis Player", "Golfer", "Musician", "DJ", "TV Host",
+                "YouTuber", "Director", "Producer", "Journalist", "Influencer"
+            ]
+        };
+
+        // Countries
+        const countries = [
+            "United States", "United Kingdom", "Canada", "Australia", "France",
+            "Germany", "Italy", "Spain", "Brazil", "Argentina",
+            "Mexico", "Japan", "South Korea", "China", "India",
+            "Russia", "Sweden", "Netherlands", "Portugal", "Indonesia",
+            "Malaysia", "Thailand", "South Africa", "Nigeria", "Egypt"
+        ];
+
+        // Seed names for realistic results
+        const seedNames = {
+            male: [
+                "Tom", "Chris", "John", "Robert", "Michael",
+                "David", "James", "Daniel", "William", "Joseph",
+                "Ryan", "Matthew", "Kevin", "Andrew", "Jason",
+                "Cristiano", "Lionel", "Neymar", "Kylian", "Mohamed",
+                "Lewis", "Max", "Charles", "Roger", "Novak"
+            ],
+            female: [
+                "Emma", "Olivia", "Ava", "Sophia", "Isabella",
+                "Charlotte", "Amelia", "Mia", "Harper", "Evelyn",
+                "Taylor", "Selena", "Beyonce", "Rihanna", "Ariana",
+                "Lady", "Jennifer", "Angelina", "Scarlett", "Natalie",
+                "Serena", "Naomi", "Simona", "Maria", "Venus"
+            ]
+        };
+
+        // Last names
+        const lastNames = [
+            "Smith", "Johnson", "Williams", "Brown", "Jones",
+            "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
+            "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+            "Lee", "Perez", "Thompson", "White", "Harris",
+            "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
+            "Walker", "Young", "Allen", "King", "Wright",
+            "Scott", "Torres", "Nguyen", "Hill", "Flores"
+        ];
+
+        // Generate a random celebrity dataset
+        function generateCelebrityDataset() {
+            const dataset = [];
+            
+            // Generate male celebrities (60%)
+            for (let i = 0; i < 6000; i++) {
+                const firstName = seedNames.male[Math.floor(Math.random() * seedNames.male.length)];
+                const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                
+                dataset.push({
+                    name: `${firstName} ${lastName}`,
+                    gender: "male",
+                    profession: professions.male[Math.floor(Math.random() * professions.male.length)],
+                    country: countries[Math.floor(Math.random() * countries.length)],
+                    image: Math.random() > 0.7 ? `https://i.pravatar.cc/300?img=${Math.floor(Math.random() * 70)}` : fallbackAvatar
+                });
+            }
+            
+            // Generate female celebrities (40%)
+            for (let i = 0; i < 4000; i++) {
+                const firstName = seedNames.female[Math.floor(Math.random() * seedNames.female.length)];
+                const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+                
+                dataset.push({
+                    name: `${firstName} ${lastName}`,
+                    gender: "female",
+                    profession: professions.female[Math.floor(Math.random() * professions.female.length)],
+                    country: countries[Math.floor(Math.random() * countries.length)],
+                    image: Math.random() > 0.7 ? `https://i.pravatar.cc/300?img=${Math.floor(Math.random() * 70) + 70}` : fallbackAvatar
+                });
+            }
+            
+            // Shuffle the dataset
+            return dataset.sort(() => Math.random() - 0.5);
+        }
+
+        // Levenshtein distance algorithm for string similarity
+        function levenshteinDistance(a, b) {
+            if (a.length === 0) return b.length;
+            if (b.length === 0) return a.length;
+            
+            const matrix = [];
+            
+            for (let i = 0; i <= b.length; i++) {
+                matrix[i] = [i];
+            }
+            
+            for (let j = 0; j <= a.length; j++) {
+                matrix[0][j] = j;
+            }
+            
+            for (let i = 1; i <= b.length; i++) {
+                for (let j = 1; j <= a.length; j++) {
+                    if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1, // substitution
+                            matrix[i][j - 1] + 1,     // insertion
+                            matrix[i - 1][j] + 1      // deletion
+                        );
+                    }
+                }
+            }
+            
+            return matrix[b.length][a.length];
+        }
+
+        // Calculate similarity score between two names
+        function calculateSimilarity(inputName, celebrityName) {
+            // Convert to lowercase for case-insensitive comparison
+            const input = inputName.toLowerCase();
+            const celebrity = celebrityName.toLowerCase();
+            
+            // Calculate Levenshtein distance
+            const distance = levenshteinDistance(input, celebrity);
+            const maxLength = Math.max(input.length, celebrity.length);
+            let similarity = (1 - distance / maxLength) * 100;
+            
+            // Apply random weighted boost (between 0.8 and 1.2)
+            const randomBoost = 0.8 + Math.random() * 0.4;
+            similarity *= randomBoost;
+            
+            // Bonus if first names match
+            const inputFirstName = input.split(' ')[0];
+            const celebrityFirstName = celebrity.split(' ')[0];
+            if (inputFirstName === celebrityFirstName) {
+                similarity += 15;
+            }
+            
+            // Cap the similarity between 70-100% if names are very different
+            if (similarity > 100) similarity = 100;
+            if (similarity < 0) similarity = 0;
+            
+            // Ensure minimum 5% and maximum 100%
+            return Math.min(100, Math.max(5, Math.round(similarity)));
+        }
+
+        // Filter and find similar celebrities
+        function findSimilarCelebrities(inputName, genderFilter, dataset) {
+            // Filter by gender first
+            let filteredDataset = dataset;
+            if (genderFilter !== 'all') {
+                filteredDataset = dataset.filter(celebrity => celebrity.gender === genderFilter);
+            }
+            
+            // Calculate similarity scores for each celebrity
+            const celebritiesWithScores = filteredDataset.map(celebrity => {
+                const similarity = calculateSimilarity(inputName, celebrity.name);
+                return {
+                    ...celebrity,
+                    similarity
+                };
+            });
+            
+            // Sort by similarity score (descending)
+            celebritiesWithScores.sort((a, b) => b.similarity - a.similarity);
+            
+            // Return top 3
+            return celebritiesWithScores.slice(0, 3);
+        }
+
+        // Display results
+        function displayResults(results) {
+            const resultsContainer = document.getElementById('results-container');
+            const resultsGrid = document.getElementById('results-grid');
+            const noResults = document.getElementById('no-results');
+            
+            // Clear previous results
+            resultsGrid.innerHTML = '';
+            
+            if (results.length === 0) {
+                resultsContainer.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            
+            // Add new results
+            results.forEach(celebrity => {
+                const card = document.createElement('div');
+                card.className = 'celebrity-card';
+                
+                card.innerHTML = `
+                    <img src="${celebrity.image}" alt="${celebrity.name}" class="celebrity-image" onerror="this.src='${fallbackAvatar}'">
+                    <div class="celebrity-details">
+                        <h3 class="celebrity-name">${celebrity.name}</h3>
+                        <p class="celebrity-profession">${celebrity.profession}</p>
+                        <p class="celebrity-country">${celebrity.country}</p>
+                        <span class="similarity-score">${celebrity.similarity}% similar</span>
+                    </div>
+                `;
+                
+                resultsGrid.appendChild(card);
+            });
+            
+            resultsContainer.style.display = 'block';
+        }
+
+        // Main function
+        document.addEventListener('DOMContentLoaded', () => {
+            // Generate initial dataset
+            let celebrityDataset = generateCelebrityDataset();
+            
+            // Search button click handler
+            document.getElementById('search-btn').addEventListener('click', () => {
+                const inputName = document.getElementById('name').value.trim();
+                const genderFilter = document.getElementById('gender').value;
+                const errorMessage = document.getElementById('error-message');
+                
+                if (!inputName) {
+                    errorMessage.style.display = 'block';
+                    return;
+                }
+                
+                errorMessage.style.display = 'none';
+                
+                // Find and display similar celebrities
+                const results = findSimilarCelebrities(inputName, genderFilter, celebrityDataset);
+                displayResults(results);
+            });
+            
+            // Regenerate dataset button click handler
+            document.getElementById('regenerate-btn').addEventListener('click', () => {
+                celebrityDataset = generateCelebrityDataset();
+                alert('New dataset of 10,000 celebrities generated!');
+            });
+            
+            // Allow search on Enter key
+            document.getElementById('name').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    document.getElementById('search-btn').click();
+                }
+            });
+        });
+
+        /*
+        HOW TO REPLACE WITH REAL DATASET:
+        1. Prepare a JSON file with 10,000 celebrity entries in this format:
+           [
+               {
+                   "name": "Celebrity Name",
+                   "gender": "male|female",
+                   "profession": "Profession",
+                   "country": "Country",
+                   "image": "URL or data URL"
+               },
+               ...
+           ]
+        
+        2. Replace the generateCelebrityDataset() function with:
+           async function generateCelebrityDataset() {
+               const response = await fetch('path/to/your/celebrity-dataset.json');
+               return await response.json();
+           }
+        
+        3. Make sure to call it properly in an async context or use .then()
+        */
+    </script>
+</body>
+</html>
