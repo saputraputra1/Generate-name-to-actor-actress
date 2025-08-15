@@ -3,38 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Famous Artist Finder</title>
+    <title>Find Your Match</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Famous Artist Finder</h1>
-            <p class="subtitle">Find famous artists within a specific age range</p>
+            <h1>Find Your Match</h1>
+            <p class="subtitle">Enter your details to find a famous match!</p>
         </header>
 
         <div class="search-form">
             <div class="form-group">
-                <label for="min-age">Minimum Age: <span id="min-age-value">15</span></label>
-                <input type="range" id="min-age" min="10" max="80" value="15">
+                <label for="user-name">Your Name:</label>
+                <input type="text" id="user-name" placeholder="Enter your name">
             </div>
-            
             <div class="form-group">
-                <label for="max-age">Maximum Age: <span id="max-age-value">25</span></label>
-                <input type="range" id="max-age" min="10" max="80" value="25">
+                <label for="user-age">Your Age:</label>
+                <input type="number" id="user-age" placeholder="Enter your age">
             </div>
+            <div class="form-group">
+                <label>Your Gender:</label>
+                <label for="gender-male">
+                    <input type="radio" id="gender-male" name="gender" value="male"> Male
+                </label>
+                <label for="gender-female">
+                    <input type="radio" id="gender-female" name="gender" value="female"> Female
+                </label>
+            </div>
+            <button id="find-match-btn">Find Match</button>
         </div>
 
         <div class="results-container" id="results-container">
-            <h2 class="results-title">Artists Found!</h2>
+            <h2 class="results-title">Matches Found!</h2>
             <div class="results-grid" id="results-grid">
-                <!-- Artist cards will be displayed here by JavaScript -->
+                <!-- Match cards will be displayed here by JavaScript -->
             </div>
         </div>
 
         <div class="no-results" id="no-results">
-            Sorry, no artists were found for the selected age range. Try different values!
+            Sorry, no matches were found.
         </div>
 
     </div>

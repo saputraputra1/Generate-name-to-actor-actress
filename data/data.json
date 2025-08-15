@@ -4,6 +4,7 @@
     "birth_year": 2003,
     "category": "Singer, Actress",
     "country": "USA",
+    "gender": "female",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Olivia_Rodrigo_at_the_HSMTMTS_Premiere_%28cropped%29.jpg/440px-Olivia_Rodrigo_at_the_HSMTMTS_Premiere_%28cropped%29.jpg"
   },
   {
@@ -11,6 +12,7 @@
     "birth_year": 2003,
     "category": "Actor",
     "country": "UK",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Louis_Partridge_in_2022.jpg/440px-Louis_Partridge_in_2022.jpg"
   },
   {
@@ -18,6 +20,7 @@
     "birth_year": 2002,
     "category": "Actress",
     "country": "USA",
+    "gender": "female",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Jenna_Ortega_2023_in_Paris.jpg/440px-Jenna_Ortega_2023_in_Paris.jpg"
   },
   {
@@ -25,6 +28,7 @@
     "birth_year": 2002,
     "category": "Actor",
     "country": "USA",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Gaten_Matarazzo_at_the_2018_Time_100_Gala_%28cropped%29.jpg/440px-Gaten_Matarazzo_at_the_2018_Time_100_Gala_%28cropped%29.jpg"
   },
   {
@@ -32,6 +36,7 @@
     "birth_year": 2001,
     "category": "Singer",
     "country": "USA",
+    "gender": "female",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Billie_Eilish_at_the_2024_Oscars.jpg/440px-Billie_Eilish_at_the_2024_Oscars.jpg"
   },
   {
@@ -39,6 +44,7 @@
     "birth_year": 2004,
     "category": "Actor",
     "country": "UK",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Kit_Connor_for_Vogue_Taiwan_2023.jpg/440px-Kit_Connor_for_Vogue_Taiwan_2023.jpg"
   },
   {
@@ -46,6 +52,7 @@
     "birth_year": 2002,
     "category": "Actress",
     "country": "USA",
+    "gender": "female",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Sadie_Sink_by_Gage_Skidmore.jpg/440px-Sadie_Sink_by_Gage_Skidmore.jpg"
   },
   {
@@ -53,6 +60,7 @@
     "birth_year": 2003,
     "category": "Footballer",
     "country": "UK",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Jude_Bellingham_2023.jpg/440px-Jude_Bellingham_2023.jpg"
   },
   {
@@ -60,6 +68,7 @@
     "birth_year": 2004,
     "category": "Tennis Player",
     "country": "USA",
+    "gender": "female",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Coco_Gauff_2023_US_Open.jpg/440px-Coco_Gauff_2023_US_Open.jpg"
   },
   {
@@ -67,6 +76,7 @@
     "birth_year": 2002,
     "category": "Rapper",
     "country": "USA",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/NLE_Choppa_2021.jpg/440px-NLE_Choppa_2021.jpg"
   },
   {
@@ -74,6 +84,7 @@
     "birth_year": 2003,
     "category": "Singer",
     "country": "Canada",
+    "gender": "female",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Tate_McRae_at_the_2024_Brit_Awards.png/440px-Tate_McRae_at_the_2024_Brit_Awards.png"
   },
   {
@@ -81,6 +92,7 @@
     "birth_year": 2003,
     "category": "Tennis Player",
     "country": "Spain",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Carlos_Alcaraz_2023.jpg/440px-Carlos_Alcaraz_2023.jpg"
   },
   {
@@ -88,6 +100,7 @@
     "birth_year": 2003,
     "category": "Musician",
     "country": "Indonesia",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Joey_Alexander_at_the_White_House_on_International_Jazz_Day%2C_2016.jpg/440px-Joey_Alexander_at_the_White_House_on_International_Jazz_Day%2C_2016.jpg"
   },
   {
@@ -95,6 +108,7 @@
     "birth_year": 2004,
     "category": "Actress",
     "country": "UK",
+    "gender": "female",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Millie_Bobby_Brown_by_Gage_Skidmore.jpg/440px-Millie_Bobby_Brown_by_Gage_Skidmore.jpg"
   },
   {
@@ -102,6 +116,7 @@
     "birth_year": 2002,
     "category": "Rapper",
     "country": "USA",
+    "gender": "male",
     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Lil_Tecca_2019.jpg/440px-Lil_Tecca_2019.jpg"
   }
 ]

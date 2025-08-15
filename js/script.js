@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const minAgeSlider = document.getElementById('min-age');
-    const maxAgeSlider = document.getElementById('max-age');
-    const minAgeValue = document.getElementById('min-age-value');
-    const maxAgeValue = document.getElementById('max-age-value');
+    const userNameInput = document.getElementById('user-name');
+    const userAgeInput = document.getElementById('user-age');
+    const findMatchBtn = document.getElementById('find-match-btn');
     const resultsContainer = document.getElementById('results-container');
     const resultsGrid = document.getElementById('results-grid');
     const noResults = document.getElementById('no-results');
@@ -15,33 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return currentYear - birthYear;
     }
 
-    // Display artists based on age filter
-    function filterAndDisplayArtists() {
-        const minAge = parseInt(minAgeSlider.value, 10);
-        const maxAge = parseInt(maxAgeSlider.value, 10);
+    // Display matches based on user's gender
+    function filterAndDisplayMatches(userGender) {
+        const oppositeGender = userGender === 'male' ? 'female' : 'male';
 
-        // Update slider value display
-        minAgeValue.textContent = minAge;
-        maxAgeValue.textContent = maxAge;
-
-        // Ensure minAge is not greater than maxAge
-        if (minAge > maxAge) {
-            maxAgeSlider.value = minAge;
-            maxAgeValue.textContent = minAge;
-        }
-
-        const filteredArtists = celebrityDataset.filter(person => {
-            const age = calculateAge(person.birth_year);
-            return age >= minAge && age <= maxAge;
+        const filteredMatches = celebrityDataset.filter(person => {
+            return person.gender === oppositeGender;
         });
 
         resultsGrid.innerHTML = ''; // Clear previous results
 
-        if (filteredArtists.length > 0) {
+        if (filteredMatches.length > 0) {
             noResults.style.display = 'none';
             resultsContainer.classList.add('visible');
 
-            filteredArtists.forEach(match => {
+            filteredMatches.forEach(match => {
                 const card = document.createElement('div');
                 card.className = 'celebrity-card';
                 const age = calculateAge(match.birth_year);
@@ -71,17 +58,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             celebrityDataset = await response.json();
-            filterAndDisplayArtists(); // Initial display
         } catch (e) {
-            console.error("Failed to load artist data:", e);
-            noResults.textContent = "Sorry, failed to load artist data. Please refresh the page.";
+            console.error("Failed to load celebrity data:", e);
+            noResults.textContent = "Sorry, failed to load celebrity data. Please refresh the page.";
             noResults.style.display = 'block';
         }
     }
 
-    // Event Listeners
-    minAgeSlider.addEventListener('input', filterAndDisplayArtists);
-    maxAgeSlider.addEventListener('input', filterAndDisplayArtists);
+    // Event Listener for the find match button
+    findMatchBtn.addEventListener('click', () => {
+        const userName = userNameInput.value;
+        const userAge = userAgeInput.value;
+        const userGender = document.querySelector('input[name="gender"]:checked');
+
+        if (!userName || !userAge || !userGender) {
+            alert('Please fill in all fields.');
+            return;
+        }
+
+        filterAndDisplayMatches(userGender.value);
+    });
 
     // Load data on page start
     loadDataAndInit();
