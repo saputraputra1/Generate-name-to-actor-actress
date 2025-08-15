@@ -1,0 +1,230 @@
+:root {
+    --primary: #1a237e;
+    --secondary: #ffd700;
+    --light: #ffffff;
+    --dark: #0a0a0a;
+    --gray: #f5f5f5;
+    --text: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--gray);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--light);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: var(--secondary);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-weight: 500;
+    color: var(--primary);
+}
+
+input, select {
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+button {
+    background-color: var(--primary);
+    color: var(--light);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #283593;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.secondary-btn {
+    background-color: var(--secondary);
+    color: var(--dark);
+}
+
+.secondary-btn:hover {
+    background-color: #ffc400;
+}
+
+.results-container {
+    display: none;
+    margin-top: 30px;
+}
+
+.results-container.visible {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.results-title {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.celebrity-card {
+    background-color: var(--light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.celebrity-card:hover {
+    transform: translateY(-5px);
+}
+
+.celebrity-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 3px solid var(--secondary);
+}
+
+.celebrity-details {
+    padding: 15px;
+}
+
+.celebrity-name {
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.celebrity-profession {
+    color: var(--secondary);
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.celebrity-country,
+.celebrity-birth-year {
+    color: var(--text);
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.similarity-score {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.no-results {
+    text-align: center;
+    color: var(--primary);
+    font-weight: 500;
+    padding: 20px;
+    display: none;
+}
+
+.error-message {
+    color: #d32f2f;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 500;
+    display: none;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}
