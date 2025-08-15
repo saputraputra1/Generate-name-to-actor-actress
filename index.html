@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celebrity Similarity — 100.000 Famous</title>
+    <title>Celebrity Similarity — 10.000 Famous</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -237,7 +237,7 @@
     <div class="container">
         <header>
             <h1>Celebrity Similarity</h1>
-            <p class="subtitle">Discover which of 100,000 famous people you resemble most</p>
+            <p class="subtitle">Discover which of 10,000 famous people you resemble most</p>
         </header>
 
         <div class="search-form">
@@ -269,7 +269,7 @@
         </div>
 
         <div class="actions">
-            <button class="secondary-btn" id="regenerate-btn">Regenerate Dataset (100,000)</button>
+            <button class="secondary-btn" id="regenerate-btn">Regenerate Dataset (10,000)</button>
         </div>
     </div>
 
@@ -283,13 +283,33 @@
                 "Actor", "Singer", "Football Player", "Basketball Player", "Politician", 
                 "Entrepreneur", "Scientist", "Chef", "Writer", "Comedian",
                 "Racing Driver", "Tennis Player", "Golfer", "Musician", "DJ",
-                "Model", "YouTuber", "Director", "Producer", "Journalist"
+                "Model", "YouTuber", "Director", "Producer", "Journalist",
+                "Accessory designer", "Advertising designer", "Animator", "Architect", "Art administrator",
+                "Art therapist", "Artisan", "Arts administration", "Baker", "Ceramics artist",
+                "Chief creative officer", "Colorist", "Concept Artist", "Curator",
+                "Dancer", "Design director", "Design strategist", "Essayist", "Event planner",
+                "Fashion designer", "Fine artist", "Floral designer", "Game designer", "Graphic designer",
+                "Hairstylist", "Illustrator", "Interior designer", "Jewellery designer", "Lyricist",
+                "Make-up artist", "Marine designer", "Media designer", "Party planner", "Penciller",
+                "Photographer", "Photojournalist", "Potter", "Production designer", "Sculptor",
+                "Set decorator", "Set dresser", "Tattoo artist", "Video Game Designer", "Web designer",
+                "Wedding planner"
             ],
             female: [
                 "Actress", "Singer", "Model", "Dancer", "Politician",
                 "Entrepreneur", "Scientist", "Chef", "Writer", "Comedian",
                 "Tennis Player", "Golfer", "Musician", "DJ", "TV Host",
-                "YouTuber", "Director", "Producer", "Journalist", "Influencer"
+                "YouTuber", "Director", "Producer", "Journalist", "Influencer",
+                "Accessory designer", "Advertising designer", "Animator", "Architect", "Art administrator",
+                "Art therapist", "Artisan", "Arts administration", "Baker", "Ceramics artist",
+                "Chief creative officer", "Colorist", "Concept Artist", "Curator",
+                "Design director", "Design strategist", "Essayist", "Event planner",
+                "Fashion designer", "Fine artist", "Floral designer", "Game designer", "Graphic designer",
+                "Hairstylist", "Illustrator", "Interior designer", "Jewellery designer", "Lyricist",
+                "Make-up artist", "Marine designer", "Media designer", "Party planner", "Penciller",
+                "Photographer", "Photojournalist", "Potter", "Production designer", "Sculptor",
+                "Set decorator", "Set dresser", "Tattoo artist", "Video Game Designer", "Web designer",
+                "Wedding planner"
             ]
         };
 
@@ -299,37 +319,73 @@
             "Germany", "Italy", "Spain", "Brazil", "Argentina",
             "Mexico", "Japan", "South Korea", "China", "India",
             "Russia", "Sweden", "Netherlands", "Portugal", "Indonesia",
-            "Malaysia", "Thailand", "South Africa", "Nigeria", "Egypt"
+            "Malaysia", "Thailand", "South Africa", "Nigeria", "Egypt",
+            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Armenia",
+            "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
+            "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
+            "Botswana", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon",
+            "Central African Republic", "Chad", "Chile", "Colombia", "Comoros", "Costa Rica",
+            "Croatia", "Cuba", "Cyprus", "Czechia", "Denmark", "Djibouti",
+            "Dominica", "Ecuador", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
+            "Ethiopia", "Fiji", "Finland", "Gabon", "Gambia", "Georgia",
+            "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guyana",
+            "Haiti", "Honduras", "Hungary", "Iceland", "Iran", "Iraq",
+            "Ireland", "Israel", "Jamaica", "Jordan", "Kazakhstan", "Kenya",
+            "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
+            "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar",
+            "Malawi", "Maldives", "Mali", "Malta", "Mauritania", "Mauritius",
+            "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco",
+            "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "New Zealand",
+            "Nicaragua", "Niger", "North Korea", "North Macedonia", "Norway", "Oman",
+            "Pakistan", "Palau", "Panama", "Paraguay", "Peru", "Philippines",
+            "Poland", "Qatar", "Romania", "Rwanda", "Samoa", "San Marino",
+            "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
+            "Slovakia", "Slovenia", "Somalia", "South Korea", "South Sudan", "Sri Lanka",
+            "Sudan", "Suriname", "Switzerland", "Syria", "Tajikistan", "Tanzania",
+            "Timor-Leste", "Togo", "Tonga", "Tunisia", "Turkey", "Turkmenistan",
+            "Tuvalu", "Uganda", "Ukraine", "Uruguay", "Uzbekistan", "Vanuatu",
+            "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
         ];
 
         // Seed names for realistic results
         const seedNames = {
             male: [
-                "Tom", "Chris", "John", "Robert", "Michael",
-                "David", "James", "Daniel", "William", "Joseph",
-                "Ryan", "Matthew", "Kevin", "Andrew", "Jason",
-                "Cristiano", "Lionel", "Neymar", "Kylian", "Mohamed",
-                "Lewis", "Max", "Charles", "Roger", "Novak"
+                "Tom", "Chris", "John", "Robert", "Michael", "David", "James", "Daniel", "William", "Joseph",
+                "Ryan", "Matthew", "Kevin", "Andrew", "Jason", "Cristiano", "Lionel", "Neymar", "Kylian", "Mohamed",
+                "Lewis", "Max", "Charles", "Roger", "Novak", "Abdelkader", "Ahmed", "Ali", "Ibrahim", "Omar",
+                "Youssef", "Mahmoud", "Mustafa", "Khaled", "Mamadou", "Moussa", "Abdoulaye", "Mateo", "Felipe",
+                "Enzo", "Bautista", "Benjamín", "Liam", "Noah", "Miguel", "Ravi", "Théo", "Gael", "Artur",
+                "Davit", "Narek", "Hayk", "Mark", "Tigran", "Huseyn", "Yusif", "Raul", "Murad", "Haruto",
+                "Minato", "Riku", "Aoto", "Haruki", "Paul", "Jakob", "Elias", "Maximilian", "Felix",
+                "Luka", "Jakov", "Toma", "Petar", "Oliver", "Theodore", "Henry", "Luca", "Leo"
             ],
             female: [
-                "Emma", "Olivia", "Ava", "Sophia", "Isabella",
-                "Charlotte", "Amelia", "Mia", "Harper", "Evelyn",
-                "Taylor", "Selena", "Beyonce", "Rihanna", "Ariana",
-                "Lady", "Jennifer", "Angelina", "Scarlett", "Natalie",
-                "Serena", "Naomi", "Simona", "Maria", "Venus"
+                "Emma", "Olivia", "Ava", "Sophia", "Isabella", "Charlotte", "Amelia", "Mia", "Harper", "Evelyn",
+                "Taylor", "Selena", "Beyonce", "Rihanna", "Ariana", "Lady", "Jennifer", "Angelina", "Scarlett", "Natalie",
+                "Serena", "Naomi", "Simona", "Maria", "Venus", "Imene", "Sara", "Yasmine", "Lyna", "Amina",
+                "Meriem", "Fatma", "Maha", "Reem", "Aya", "Fatoumata", "Mariam", "Hawa", "Awa", "Sofía",
+                "Emilia", "Catalina", "Helena", "Cecília", "Maitê", "Laura", "Alice", "Nare", "Arpi",
+                "Lucy", "Maneh", "Zahra", "Zeinab", "Maryam", "Nilay", "Aylin", "Sana", "Ema",
+                "Mei", "Mio", "Tsumugi", "Marie", "Valentina", "Lena", "Lea", "Rita", "Nika",
+                "Mila", "Lucija", "Isla", "Hazel"
             ]
         };
 
         // Last names
         const lastNames = [
-            "Smith", "Johnson", "Williams", "Brown", "Jones",
-            "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
-            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson",
-            "Thomas", "Taylor", "Moore", "Jackson", "Martin",
-            "Lee", "Perez", "Thompson", "White", "Harris",
-            "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
-            "Walker", "Young", "Allen", "King", "Wright",
-            "Scott", "Torres", "Nguyen", "Hill", "Flores"
+            "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez",
+            "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin",
+            "Lee", "Perez", "Thompson", "White", "Harris", "Sanchez", "Clark", "Ramirez", "Lewis", "Robinson",
+            "Walker", "Young", "Allen", "King", "Wright", "Scott", "Torres", "Nguyen", "Hill", "Flores", "Wang",
+            "Devi", "Ivanov", "Kim", "Ali", "Müller", "Zhang", "Li", "Singh", "Vazquez", "Velazquez",
+            "Bautista", "Cruz", "Ortiz", "Gomez", "Reyes", "Rivera", "Ramos", "Castillo", "Santos", "Medina",
+            "Soto", "Aguilar", "Contreras", "Salazar", "Mendoza", "Guerrero", "Rojas", "Morales", "Moreno",
+            "Green", "Baker", "Adams", "Nelson", "Carter", "Mitchell", "Roberts", "Turner", "Phillips", "Campbell",
+            "Parker", "Evans", "Edwards", "Collins", "Stewart", "Morris", "Rogers", "Reed", "Cook", "Morgan",
+            "Bell", "Murphy", "Bailey", "Cooper", "Richardson", "Cox", "Howard", "Ward", "Peterson", "Gray",
+            "James", "Watson", "Brooks", "Kelly", "Sanders", "Price", "Bennett", "Wood", "Barnes", "Ross",
+            "Henderson", "Coleman", "Jenkins", "Perry", "Powell", "Long", "Patterson", "Hughes", "Washington",
+            "Butler", "Simmons", "Foster", "Gonzales", "Bryant", "Alexander", "Russell", "Griffin", "Diaz", "Hayes"
         ];
 
         // Generate a random celebrity dataset
@@ -337,7 +393,7 @@
             const dataset = [];
             
             // Generate male celebrities (60%)
-            for (let i = 0; i < 60000; i++) {
+            for (let i = 0; i < 6000; i++) {
                 const firstName = seedNames.male[Math.floor(Math.random() * seedNames.male.length)];
                 const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
                 
@@ -351,7 +407,7 @@
             }
             
             // Generate female celebrities (40%)
-            for (let i = 0; i < 40000; i++) {
+            for (let i = 0; i < 4000; i++) {
                 const firstName = seedNames.female[Math.floor(Math.random() * seedNames.female.length)];
                 const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
                 
@@ -518,7 +574,7 @@
             // Regenerate dataset button click handler
             document.getElementById('regenerate-btn').addEventListener('click', () => {
                 celebrityDataset = generateCelebrityDataset();
-                alert('New dataset of 100,000 celebrities generated!');
+                alert('New dataset of 10,000 celebrities generated!');
             });
             
             // Allow search on Enter key
