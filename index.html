@@ -3,44 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cari Jodoh Nama</title>
+    <title>Famous Artist Finder</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Cari Jodoh Nama</h1>
-            <p class="subtitle">Temukan jodoh berdasarkan nama Anda dari 3.400 orang terkenal</p>
+            <h1>Famous Artist Finder</h1>
+            <p class="subtitle">Find famous artists within a specific age range</p>
         </header>
 
         <div class="search-form">
             <div class="form-group">
-                <label for="name">Nama Lengkap Anda</label>
-                <input type="text" id="name" placeholder="Contoh: Budi Santoso" required>
+                <label for="min-age">Minimum Age: <span id="min-age-value">15</span></label>
+                <input type="range" id="min-age" min="10" max="80" value="15">
             </div>
             
             <div class="form-group">
-                <label for="gender">Jenis Kelamin Anda</label>
-                <select id="gender">
-                    <option value="male">Pria</option>
-                    <option value="female">Wanita</option>
-                </select>
+                <label for="max-age">Maximum Age: <span id="max-age-value">25</span></label>
+                <input type="range" id="max-age" min="10" max="80" value="25">
             </div>
-            
-            <button id="search-btn">Cari Jodoh Nama</button>
-            <p class="error-message" id="error-message">Silakan masukkan nama Anda</p>
         </div>
 
         <div class="results-container" id="results-container">
-            <h2 class="results-title">Jodoh Anda Ditemukan!</h2>
+            <h2 class="results-title">Artists Found!</h2>
             <div class="results-grid" id="results-grid">
-                <!-- Hasil akan ditampilkan di sini oleh JavaScript -->
+                <!-- Artist cards will be displayed here by JavaScript -->
             </div>
         </div>
 
         <div class="no-results" id="no-results">
-            Maaf, tidak ada jodoh yang cocok ditemukan. Coba lagi!
+            Sorry, no artists were found for the selected age range. Try different values!
         </div>
 
     </div>
