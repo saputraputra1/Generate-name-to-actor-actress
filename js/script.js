@@ -7,9 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const noResults = document.getElementById('no-results');
     const errorMessage = document.getElementById('error-message');
 
-    // Fallback avatar SVG, using a simple design
-    const fallbackAvatar = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23ddd'/%3E%3Ctext x='50' y='55' font-family='Arial' font-size='40' fill='%23888' text-anchor='middle'%3E%3Ft%3C/text%3E%3C/svg%3E";
-
     let celebrityDataset = [];
 
     // Fetch the celebrity data
@@ -36,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = document.createElement('div');
         card.className = 'celebrity-card';
 
-        const imageUrl = fallbackAvatar;
+        const imageUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(match.full_name)}&background=random&color=fff`;
 
         card.innerHTML = `
             <img src="${imageUrl}" alt="${match.full_name}" class="celebrity-image">
